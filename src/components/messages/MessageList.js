@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchMessages } from '../../actions';
 
-const MessageList = () => {
-  return <div>MessageList</div>;
-};
+class MessageList extends Component {
+  componentDidMount() {
+    this.props.fetchMessages();
+  }
 
-export default MessageList;
+  render() {
+    return <div>MessageList</div>;
+  }
+}
+
+export default connect(
+  null,
+  { fetchMessages }
+)(MessageList);
