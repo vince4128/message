@@ -7,6 +7,8 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FETCH_MESSAGES:
       return { ...state, ..._.mapKeys(action.payload, 'id') };
+    case FETCH_MESSAGE:
+      return { ...state, [action.payload.id]: action.payload };
   }
 
   return state;
