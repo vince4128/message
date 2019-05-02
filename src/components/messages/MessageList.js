@@ -7,12 +7,34 @@ class MessageList extends Component {
     this.props.fetchMessages();
   }
 
+  renderList(messages) {
+    return messages.map(message => {
+      const { body, title, confidential } = message;
+      return (
+        <div>
+          <h3>{title}</h3>
+          <p>{body}</p>
+          <h4>{confidential ? 'private' : 'public'}</h4>
+          <hr />
+        </div>
+      );
+    });
+  }
+
   render() {
-    return <div>MessageList</div>;
+    console.log(this.props);
+    if (this.props.messages) {
+      return <div>{this.renderList(this.props.messages)}</div>;
+    }
+    return <div>MessageList loading...</div>;
   }
 }
 
+const mapStateToProps = state => {
+  return { messages: state.messages };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   { fetchMessages }
 )(MessageList);
