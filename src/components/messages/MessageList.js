@@ -19,10 +19,10 @@ class MessageList extends Component {
         </div>
       );
     });
+    console.log(messages);
   }
 
   render() {
-    console.log(this.props);
     if (this.props.messages) {
       return <div>{this.renderList(this.props.messages)}</div>;
     }
@@ -31,7 +31,7 @@ class MessageList extends Component {
 }
 
 const mapStateToProps = state => {
-  return { messages: state.messages };
+  return { messages: Object.values(state.messages) };
 };
 
 export default connect(
