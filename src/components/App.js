@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
+import Menu from './Menu';
 import MessageList from './messages/MessageList';
 import MessageShow from './messages/MessageShow';
 import MessageCreate from './messages/MessageCreate';
@@ -17,7 +18,7 @@ import MessageCreate from './messages/MessageCreate';
 const App = () => {
   return (
     <BrowserRouter>
-      <div>App</div>
+      <Menu />
       <Route path="/" exact component={MessageList} />
       <Route path="/show/:id" component={MessageShow} />
       <Route path="/create" component={MessageCreate} />
