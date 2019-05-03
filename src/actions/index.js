@@ -11,9 +11,9 @@ export const fetchMessage = id => async dispatch => {
   dispatch({ type: FETCH_MESSAGE, payload: response.data });
 };
 
-export const createMessage = data => {
+export const createMessage = formValues => {
   return {
     type: CREATE_MESSAGE,
-    payload: data
+    payload: formValues
   };
 };
