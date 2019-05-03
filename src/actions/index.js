@@ -1,5 +1,6 @@
 import { FETCH_MESSAGES, FETCH_MESSAGE, CREATE_MESSAGE } from './types';
 import message from '../api/message';
+import history from '../history';
 
 export const fetchMessages = () => async dispatch => {
   const response = await message.get('/posts');
@@ -11,9 +12,7 @@ export const fetchMessage = id => async dispatch => {
   dispatch({ type: FETCH_MESSAGE, payload: response.data });
 };
 
-export const createMessage = formValues => {
-  return {
-    type: CREATE_MESSAGE,
-    payload: formValues
-  };
+export const createMessage = formValues => dispatch => {
+  dispatch({ type: CREATE_MESSAGE, payload: formValues });
+  history.push('/');
 };

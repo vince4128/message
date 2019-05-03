@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
+import history from '../history';
 
 import Menu from './Menu';
 import MessageList from './messages/MessageList';
@@ -17,12 +18,12 @@ import MessageCreate from './messages/MessageCreate';
  */
 const App = () => {
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <Menu />
       <Route path="/" exact component={MessageList} />
       <Route path="/show/:id" component={MessageShow} />
       <Route path="/create" component={MessageCreate} />
-    </BrowserRouter>
+    </Router>
   );
 };
 
