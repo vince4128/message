@@ -16,7 +16,26 @@ class MessageCreate extends Component {
         <label>{label}</label>
         <input {...input} autoComplete="off" />
         {this.renderError(meta)}
-        {/*meta.error*/}
+      </div>
+    );
+  };
+
+  renderTextArea = ({ input, label, meta }) => {
+    return (
+      <div>
+        <label>{label}</label>
+        <textarea {...input} autoComplete="off" rows="5" cols="33" />
+        {this.renderError(meta)}
+      </div>
+    );
+  };
+
+  renderCheckbox = ({ input, label, meta }) => {
+    return (
+      <div>
+        <label>{label}</label>
+        <input type="checkbox" {...input} />
+        {this.renderError(meta)}
       </div>
     );
   };
@@ -29,7 +48,12 @@ class MessageCreate extends Component {
     return (
       <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
         <Field name="title" component={this.renderInput} label="Titre" />
-        <Field name="body" component={this.renderInput} label="Message" />
+        <Field name="body" component={this.renderTextArea} label="Message" />
+        <Field
+          name="confidential"
+          component={this.renderCheckbox}
+          label="Privé"
+        />
         <button>Envoyer</button>
       </form>
     );
