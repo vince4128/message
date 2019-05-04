@@ -2,33 +2,31 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchMessages } from '../../actions';
 
-import MessageListElement from './MessageListElement';
+import MessagePagination from './MessagePagination';
 
 class MessageList extends Component {
   componentDidMount() {
     this.props.fetchMessages();
   }
 
-  renderList(messages) {
-    return messages.reverse().map(message => {
-      return (
-        <li key={message.id}>
-          <MessageListElement message={message} />
-        </li>
-      );
-    });
-  }
-
   render() {
-    if (this.props.messages) {
-      return <ul>{this.renderList(this.props.messages)}</ul>;
+    const { messages } = this.props;
+    if (messages.length > 0) {
+      return (
+        <React.Fragment>
+          <div>
+            <p>Nombres de messages : {messages.length}</p>
+          </div>
+          <MessagePagination divider={25} dataToChunk={messages} />
+        </React.Fragment>
+      );
     }
     return <div>MessageList loading...</div>;
   }
 }
 
 const mapStateToProps = state => {
-  return { messages: Object.values(state.messages) };
+  return { messages: Object.values(state.messages).reverse() };
 };
 
 export default connect(
