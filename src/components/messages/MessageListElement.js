@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const MessageListElement = props => {
   const { title, body, confidential, id } = props.message;
@@ -14,6 +15,10 @@ const MessageListElement = props => {
       <hr />
     </React.Fragment>
   );
+};
+
+MessageListElement.propTypes = {
+  message: PropTypes.object
 };
 
 export default MessageListElement;

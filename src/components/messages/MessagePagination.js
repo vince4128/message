@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import MessageListElement from './MessageListElement';
 
 class MessagePagination extends Component {
@@ -53,7 +55,7 @@ class MessagePagination extends Component {
     if (chunkedData[currentIndex]) {
       return chunkedData[currentIndex].map(item => {
         return (
-          <li>
+          <li key={item.id}>
             <MessageListElement message={item} />
           </li>
         );
@@ -90,5 +92,14 @@ class MessagePagination extends Component {
     );
   }
 }
+
+MessagePagination.propTypes = {
+  divider: PropTypes.number,
+  dataToChunk: PropTypes.arrayOf(PropTypes.object)
+};
+
+MessagePagination.defaultProps = {
+  divider: 25
+};
 
 export default MessagePagination;
