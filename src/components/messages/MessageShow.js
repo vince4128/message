@@ -15,6 +15,7 @@ class MessageShow extends Component {
         <div>
           <h2>{title}</h2>
           <p>{body}</p>
+          <p>{confidential}</p>
         </div>
       );
     }

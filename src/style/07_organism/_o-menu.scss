@@ -1,0 +1,11 @@
+.o-menu {
+  width: 100%;
+
+  @include mq('md') {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 25%;
+    min-height: 100vh;
+  }
+}

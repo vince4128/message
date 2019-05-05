@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Menu = () => {
   return (
-    <nav>
+    <nav className="o-menu">
       <Link to={'/'}>Home</Link>
       <div>
         <Link to={'/'}>Tous les messages</Link>

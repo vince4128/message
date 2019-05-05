@@ -20,9 +20,11 @@ const App = () => {
   return (
     <Router history={history}>
       <Menu />
-      <Route path="/" exact component={MessageList} />
-      <Route path="/show/:id" component={MessageShow} />
-      <Route path="/create" component={MessageCreate} />
+      <main className="o-main">
+        <Route path="/" exact component={MessageList} />
+        <Route path="/show/:id" component={MessageShow} />
+        <Route path="/create" component={MessageCreate} />
+      </main>
     </Router>
   );
 };
