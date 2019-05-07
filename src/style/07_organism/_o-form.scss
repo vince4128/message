@@ -1,0 +1,61 @@
+.o-form {
+  padding: var(--space-xs);
+  fieldset {
+    border: none;
+    border-bottom: 2px solid $lightgrey-color;
+    background-color: $white-color;
+    max-width: 1024px;
+    padding: var(--space-md);
+    margin: var(--space-md);
+  }
+
+  input,
+  textarea {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    padding: var(--space-md);
+    border: none;
+    border-bottom: 2px solid;
+    border-color: $lightgrey-color;
+    transition: all 0.3s ease;
+    background-color: $lightestgrey-color;
+  }
+
+  textarea {
+    line-height: var(--text-base-size);
+  }
+
+  input:last-of-type {
+    margin-bottom: var(--space-md);
+  }
+
+  input[type='radio'],
+  input[type='checkbox'] {
+    height: 20px;
+  }
+
+  input[type='text']:focus,
+  input[type='text']:active,
+  input[type='textarea']:focus,
+  input[type='textarea']:active,
+  input[type='checkbox']:focus,
+  input[type='checkbox']:active {
+    border-color: $primary-color;
+  }
+
+  label {
+    display: block;
+    width: 100%;
+    font-size: var(--text-md);
+    color: $primary-color;
+  }
+
+  &__error {
+    padding: var(--space-sm);
+    margin-bottom: var(--space-xs);
+    border-radius: 2px;
+    color: $white-color;
+    background-color: $primary-color;
+  }
+}

@@ -6,25 +6,31 @@ import { createMessage } from '../../actions';
 class MessageCreate extends Component {
   renderError = ({ error, touched }) => {
     if (touched && error) {
-      return <div>{error}</div>;
+      return <div className="o-form__error">{error}</div>;
     }
   };
 
-  renderInput = ({ input, label, meta }) => {
+  renderInput = ({ input, label, meta, placeholder }) => {
     return (
       <div>
         <label>{label}</label>
-        <input {...input} autoComplete="off" />
+        <input {...input} placeholder={placeholder} autoComplete="off" />
         {this.renderError(meta)}
       </div>
     );
   };
 
-  renderTextArea = ({ input, label, meta }) => {
+  renderTextArea = ({ input, label, meta, placeholder }) => {
     return (
       <div>
         <label>{label}</label>
-        <textarea {...input} autoComplete="off" rows="5" cols="33" />
+        <textarea
+          {...input}
+          placeholder={placeholder}
+          autoComplete="off"
+          rows="4"
+          cols="33"
+        />
         {this.renderError(meta)}
       </div>
     );
@@ -46,15 +52,34 @@ class MessageCreate extends Component {
 
   render() {
     return (
-      <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
-        <Field name="title" component={this.renderInput} label="Titre" />
-        <Field name="body" component={this.renderTextArea} label="Message" />
-        <Field
-          name="confidential"
-          component={this.renderCheckbox}
-          label="Privé"
-        />
-        <button>Envoyer</button>
+      <form
+        className="o-form"
+        onSubmit={this.props.handleSubmit(this.onSubmit)}
+      >
+        <fieldset>
+          <Field
+            name="title"
+            component={this.renderInput}
+            label="Titre"
+            placeholder="Titre de votre message"
+          />
+          <Field
+            name="body"
+            component={this.renderTextArea}
+            label="Message"
+            placeholder="Votre message"
+          />
+        </fieldset>
+        <fieldset>
+          <Field
+            name="confidential"
+            component={this.renderCheckbox}
+            label="Privé"
+          />
+        </fieldset>
+        <fieldset>
+          <button>Envoyer</button>
+        </fieldset>
       </form>
     );
   }
