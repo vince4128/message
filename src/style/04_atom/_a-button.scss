@@ -1,0 +1,53 @@
+:root {
+  --btn-font-size: 1em;
+  --btn-sm: calc(var(--btn-font-size) - 0.2em);
+  --btn-md: calc(var(--btn-font-size) + 0.2em);
+  --btn-lg: calc(var(--btn-font-size) + 0.4em);
+}
+
+.a-button {
+  display: inline-flex;
+  position: relative;
+  white-space: nowrap;
+  text-decoration: none;
+  line-height: 1;
+  padding: var(--space-xs) var(--space-sm);
+  font-size: var(--btn-font-size);
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+}
+
+.a-button--primary {
+  background-color: $primary-color;
+  color: $white-color;
+}
+
+.a-button--secondary {
+  background-color: $secondary-color;
+  color: $white-color;
+}
+
+.a-button--subtle {
+  background-color: $lightgrey-color;
+  color: $grey-color;
+}
+
+// size
+.a-button--sm {
+  font-size: var(--btn-sm);
+}
+
+.a-button--md {
+  font-size: var(--btn-md);
+}
+
+.a-button--lg {
+  font-size: var(--btn-lg);
+}
+
+.a-button--full-width {
+  display: flex;
+  width: 100%;
+}
