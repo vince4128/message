@@ -1,9 +1,13 @@
 .o-main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   width: 100%;
-  display: block;
+  padding-top: calc(var(--space-md) * 3);
+  background-color: $lightestgrey-color;
 
   @include mq('md') {
-    width: 75%;
-    margin-left: 25%;
+    max-width: 75%;
+    padding-top: 0;
   }
 }

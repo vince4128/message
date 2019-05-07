@@ -12,14 +12,7 @@ class MessageList extends Component {
   render() {
     const { messages } = this.props;
     if (messages.length > 0) {
-      return (
-        <React.Fragment>
-          <div>
-            <p>Nombres de messages : {messages.length}</p>
-          </div>
-          <MessagePagination divider={25} dataToChunk={messages} />
-        </React.Fragment>
-      );
+      return <MessagePagination divider={25} dataToChunk={messages} />;
     }
     return <div>MessageList loading...</div>;
   }

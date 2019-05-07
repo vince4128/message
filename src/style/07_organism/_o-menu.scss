@@ -1,11 +1,67 @@
 .o-menu {
+  position: fixed;
+  top: 0;
   width: 100%;
+  list-style-type: none;
+  background-color: $white-color;
+  box-shadow: var(--shadow-sm);
+
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+
+  &__element {
+    display: inline-block;
+    a {
+      display: block;
+      padding: var(--space-xs);
+      text-decoration: none;
+      color: $primary-color;
+      font-size: var(--text-base-size);
+      &:hover {
+        background-color: $lightgrey-color;
+      }
+      i {
+        padding-right: var(--space-md);
+      }
+    }
+  }
+
+  &__element--logo {
+    text-align: center;
+    a {
+      border: none;
+      background-color: $primary-color;
+      color: $white-color;
+      &:hover {
+        background-color: lighten($primary-color, 5%);
+      }
+    }
+  }
 
   @include mq('md') {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 25%;
-    min-height: 100vh;
+
+    &__element {
+      display: block;
+      border-left: solid 5px lighten($primary-color, 20%);
+      &:hover {
+        border-left: solid 5px $primary-color;
+      }
+      a {
+        display: block;
+        padding: var(--space-md);
+      }
+    }
+
+    &__element--logo {
+      border: none;
+      &:hover {
+        border: none;
+        background-color: lighten($primary-color, 10%);
+      }
+    }
   }
 }

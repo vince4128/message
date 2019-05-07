@@ -8,11 +8,13 @@ const MessageListElement = props => {
   return (
     <React.Fragment>
       <Link to={`/show/${id}`}>
-        <h3>{title}</h3>
+        <h3 className="m-message__title">{title}</h3>
+        <p className="m-message__body">{body}</p>
+        <h4 className="m-message__privacy">
+          {confidential ? 'private' : 'public'}
+        </h4>
+        <hr />
       </Link>
-      <p>{body}</p>
-      <h4>{confidential ? 'private' : 'public'}</h4>
-      <hr />
     </React.Fragment>
   );
 };

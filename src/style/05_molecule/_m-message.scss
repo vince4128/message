@@ -1,0 +1,31 @@
+.m-message {
+  padding: 0 var(--space-md) 0 var(--space-md);
+  margin: 0;
+  display: block;
+  background-color: $white-color;
+  overflow: hidden;
+
+  a {
+    text-decoration: none;
+    margin: 0;
+  }
+
+  &__title {
+    color: $grey-color;
+  }
+
+  &__body {
+    color: $grey-color;
+  }
+
+  &__privacy {
+    color: $grey-color;
+  }
+
+  hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+}

@@ -55,7 +55,7 @@ class MessagePagination extends Component {
     if (chunkedData[currentIndex]) {
       return chunkedData[currentIndex].map(item => {
         return (
-          <li key={item.id}>
+          <li key={item.id} className="m-message">
             <MessageListElement message={item} />
           </li>
         );
@@ -72,22 +72,33 @@ class MessagePagination extends Component {
     const total = dataToChunk.length;
 
     return (
-      <div>
-        {start} -{end <= total ? end : total}&nbsp;/&nbsp;
-        {total}
-      </div>
+      <React.Fragment>
+        {start} - {end <= total ? end : total}&nbsp;sur&nbsp;
+        {total} messages.
+      </React.Fragment>
     );
   };
 
   render() {
     return (
       <React.Fragment>
-        {this.getPosition()}
-        <div>
-          <span onClick={() => this.prevPage()}>prev</span>&nbsp;
-          <span onClick={() => this.nextPage()}>next</span>
+        <div className="m-message-controls">
+          <button
+            className="a-button a-button--subtle a-button--lg"
+            onClick={() => this.prevPage()}
+          >
+            prev
+          </button>
+          &nbsp;
+          <button
+            className="a-button a-button--subtle a-button--lg"
+            onClick={() => this.nextPage()}
+          >
+            next
+          </button>
+          &nbsp;{this.getPosition()}
         </div>
-        <ul>{this.renderChunkedData()}</ul>
+        <ul className="m-message-list">{this.renderChunkedData()}</ul>
       </React.Fragment>
     );
   }
