@@ -1,7 +1,10 @@
 .m-message {
-  padding: 0 var(--space-md) 0 var(--space-md);
-  margin: 0;
   display: block;
+  position: relative;
+  padding: 0 0 0 var(--space-md);
+  margin: 0;
+  height: calc(var(--space-lg) * 4.75);
+  border-bottom: 1px solid $lightgrey-color;
   background-color: $white-color;
   overflow: hidden;
 
@@ -11,15 +14,68 @@
   }
 
   &__title {
+    width: 95%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     color: $grey-color;
   }
 
   &__body {
+    width: 95%;
+    display: block;
+    position: relative;
+    height: calc(var(--text-base-size) * 2.2);
+    font-size: var(--text-base-size);
     color: $grey-color;
+    //white-space: nowrap;
+    overflow: hidden;
+    //text-overflow: ellipsis;
+  }
+
+  &__body:after {
+    content: '';
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 30%;
+    height: var(--text-base-size);
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 1) 50%
+    );
   }
 
   &__privacy {
+    position: absolute;
+    width: var(--space-xs);
+    top: 0;
+    bottom: 0;
+    right: var(--space-xs);
     color: $grey-color;
+    background-color: $primary-color;
+  }
+
+  &__privacy--private {
+    background-color: $primary-color;
+  }
+
+  &__privacy--public {
+    background-color: $secondary-color;
+  }
+
+  &__privacy-text {
+    color: lighten($grey-color, 30%);
+  }
+
+  &__privacy-text--private {
+    color: $primary-color;
+  }
+
+  &__privacy-text--public {
+    color: $secondary-color;
   }
 
   hr {

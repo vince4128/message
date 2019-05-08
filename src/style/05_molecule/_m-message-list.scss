@@ -1,6 +1,8 @@
 .m-message-list {
+  display: block;
+  position: relative;
   overflow-y: auto;
   list-style-type: none;
-  padding: 0;
+  padding: 0 var(--space-xs);
   margin: 0;
 }

@@ -10,10 +10,22 @@ const MessageListElement = props => {
       <Link to={`/show/${id}`}>
         <h3 className="m-message__title">{title}</h3>
         <p className="m-message__body">{body}</p>
-        <h4 className="m-message__privacy">
-          {confidential ? 'private' : 'public'}
-        </h4>
-        <hr />
+        <p
+          className={`m-message__privacy-text text--sm ${
+            confidential
+              ? 'm-message__privacy-text--private'
+              : 'm-message__privacy-text--public'
+          }`}
+        >
+          message {confidential ? 'privé' : 'public'}
+        </p>
+        <div
+          className={`m-message__privacy ${
+            confidential
+              ? 'm-message__privacy--private'
+              : 'm-message__privacy--public'
+          }`}
+        />
       </Link>
     </React.Fragment>
   );

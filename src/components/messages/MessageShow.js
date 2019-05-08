@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchMessage } from '../../actions';
 
 class MessageShow extends Component {
@@ -12,11 +13,30 @@ class MessageShow extends Component {
       const { body, title, confidential } = this.props.message;
 
       return (
-        <div>
-          <h2>{title}</h2>
-          <p>{body}</p>
-          <p>{confidential}</p>
-        </div>
+        <React.Fragment>
+          <div className="m-message-controls">
+            <Link to={'/'}>
+              <button className="a-button a-button--light a-button--lg a-button--direction a-button--shadow">
+                ‹
+              </button>
+              Retour
+            </Link>
+            <div className="m-message-show">
+              <h2>{title}</h2>
+              <p>{body}</p>
+              <p>{confidential}</p>
+              <p
+                className={`m-message__privacy-text text--sm ${
+                  confidential
+                    ? 'm-message__privacy-text--private'
+                    : 'm-message__privacy-text--public'
+                }`}
+              >
+                message {confidential ? 'privé' : 'public'}
+              </p>
+            </div>
+          </div>
+        </React.Fragment>
       );
     }
 
