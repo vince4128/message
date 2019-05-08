@@ -1,4 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+/**
+ * Return an svg icon inbox taking width, height and fill color as props.
+ */
 
 const IconInbox = ({ width, height, fill }) => {
   return (
@@ -15,6 +20,18 @@ const IconInbox = ({ width, height, fill }) => {
       </svg>
     </React.Fragment>
   );
+};
+
+IconInbox.propTypes = {
+  width: PropTypes.string,
+  height: PropTypes.string,
+  fill: PropTypes.string
+};
+
+IconInbox.defaultProps = {
+  width: '20',
+  height: '20',
+  fill: '#fff'
 };
 
 export default IconInbox;

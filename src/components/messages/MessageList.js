@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchMessages } from '../../actions';
 
+/**
+ * This component return the list of all the messages
+ * The messages are objects in an array fetched from redux the redux store using *fetchMessages* action
+ *
+ * This component return the *MessagePagination* component passing all the messages as a props to build a list of messages.
+ */
+
 import MessagePagination from './MessagePagination';
 
 class MessageList extends Component {

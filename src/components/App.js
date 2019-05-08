@@ -14,7 +14,9 @@ import MessageCreate from './messages/MessageCreate';
  * This project has been generated using create-react-app see the documentation here :
  * https://github.com/facebook/create-react-app/blob/master/README.md
  *
- * This component App.js is the root of the application
+ * This component App.js is the root of the application, where the router is declared.
+ * The router take the history object from history.js as a parameter.
+ *
  */
 const App = () => {
   return (

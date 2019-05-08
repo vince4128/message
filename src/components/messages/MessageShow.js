@@ -3,6 +3,13 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchMessage } from '../../actions';
 
+/**
+ * This component is connected to the redux store displays and single message fetched from it.
+ *
+ * The message is an object fetched from redux the redux store using *fetchMessage* action
+ *
+ */
+
 class MessageShow extends Component {
   componentDidMount() {
     this.props.fetchMessage(this.props.match.params.id);

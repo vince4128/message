@@ -4,6 +4,20 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { createMessage } from '../../actions';
 
+/**
+ * This component return a form for the creation of a message using redux-form to connect the form to the redux store.
+ *
+ * There is 3 Field :
+ * *Title*, the title of the message
+ * *Body*, the body of the message
+ * *Confidential*, a Boolean value to indicate the privacy of the message
+ *
+ * each type field as a render method
+ *
+ * a *renderError()* and *validate()* help to keep a record of the validity of the form and inform the user if it is incomplete
+ *
+ */
+
 class MessageCreate extends Component {
   renderError = ({ error, touched }) => {
     if (touched && error) {
@@ -85,6 +99,7 @@ class MessageCreate extends Component {
             <Field
               name="confidential"
               component={this.renderCheckbox}
+              value="true"
               label="Ce message est privé"
               id="privacy"
             />

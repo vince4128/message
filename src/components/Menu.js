@@ -4,6 +4,19 @@ import { Link, NavLink } from 'react-router-dom';
 import IconSend from './svg/IconSend';
 import IconBox from './svg/IconInbox';
 
+/**
+ * Menu
+ *
+ * Component responsible for navigating between views
+ *
+ * There's 3 view
+ * * The root view "/" displaying all the messages
+ * * The show view "/show/:id" show a message with the id :id
+ * * The create view "/create" for message creation
+ *
+ * Using NavLink from react-router-dom to show active link
+ *
+ */
 const Menu = () => {
   return (
     <nav className="o-menu" role="navigation">

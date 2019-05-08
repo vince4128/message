@@ -3,6 +3,33 @@ import PropTypes from 'prop-types';
 
 import MessageListElement from './MessageListElement';
 
+/**
+ * This component formats the message list by dividing it into pages for better readability
+ *
+ * The component takes 2 props, *messages* and *divider*.
+ * The *messages* are passed by the parent component as an array of object in props.
+ * A *divider* is also passed as props to specify how many messages are shown by pages
+ *
+ * The component has a *chunkedData* and *currentIndex* state propriety
+ * The *chunkedData* is the results of messages data chunked into arrays
+ * The *currentIndex* keep track of the page selected by the user
+ *
+ * In order to display chunked data the component use several helper functions :
+ *
+ * *chunkData()* return the data as arrays whose number depends on the props *divider*
+ *
+ * *nextPage()* and *prevPage()* are used to navigate between pages
+ *
+ * *renderChunkedData()* return only the list of messages of the active page, loop on them and return a component for each of them
+ *
+ * *getPosition()* return the number of messages displayed on screen and the total of messages
+ *
+ * The component make the list scroll on top when the component is updated
+ *
+ * The view render buttons to navigate between pages and the list of messages for the active page
+ *
+ */
+
 class MessagePagination extends Component {
   constructor(props) {
     super(props);

@@ -2,6 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+/**
+ * This component render a list item representing a message
+ *
+ * It take an object *message* as a props and render an overview of it.
+ * The content is truncate is there is an overflow.
+ *
+ */
+
 const MessageListElement = props => {
   const { title, body, confidential, id } = props.message;
 
