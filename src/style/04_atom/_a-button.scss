@@ -3,6 +3,7 @@
   --btn-sm: calc(var(--btn-font-size) - 0.2em);
   --btn-md: calc(var(--btn-font-size) + 0.2em);
   --btn-lg: calc(var(--btn-font-size) + 0.4em);
+  --btn-xl: calc(var(--btn-font-size) * 2);
 }
 
 .a-button {
@@ -16,22 +17,65 @@
   justify-content: center;
   align-items: center;
   border: none;
+  outline: none;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.a-button:disabled {
+  background-color: $lightgrey-color;
+  color: $white-color;
+  cursor: not-allowed;
+  &:hover {
+    background-color: lighten($lightgrey-color, 2%);
+  }
+}
+
+.a-button + .a-button {
+  margin-left: var(--space-xs);
 }
 
 .a-button--primary {
   background-color: $primary-color;
   color: $white-color;
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
 }
 
 .a-button--secondary {
   background-color: $secondary-color;
   color: $white-color;
+  &:hover {
+    background-color: darken($secondary-color, 10%);
+  }
 }
 
 .a-button--subtle {
   background-color: $lightgrey-color;
   color: $grey-color;
+  &:hover {
+    background-color: darken($lightgrey-color, 10%);
+  }
+}
+
+.a-button--light {
+  background-color: $white-color;
+  color: lighten($grey-color, 30%);
+  &:hover {
+    background-color: darken($white-color, 10%);
+  }
+}
+
+.a-button--direction {
+  border-radius: 50%;
+  width: var(--space-lg);
+  height: var(--space-lg);
+  margin: var(--space-xs);
+}
+
+.a-button--direction + .a-button--direction {
+  margin-left: 0;
 }
 
 // size
@@ -47,7 +91,16 @@
   font-size: var(--btn-lg);
 }
 
+.a-button--xl {
+  font-size: var(--btn-xl);
+}
+
 .a-button--full-width {
   display: flex;
   width: 100%;
+}
+
+//shadow
+.a-button--shadow {
+  box-shadow: var(--shadow-sm);
 }
