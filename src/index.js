@@ -9,6 +9,11 @@ import App from './components/App';
 
 import styles from '../src/style/styles.scss';
 
+/*
+ * Index of the application
+ * Create the *Provider* which wrap the application and connects it to the reducers via the redux store.
+ */
+
 const store = createStore(reducers, applyMiddleware(ReduxThunk));
 
 ReactDOM.render(
