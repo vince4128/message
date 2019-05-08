@@ -10,12 +10,17 @@ class MessagePagination extends Component {
       chunkedData: [],
       currentIndex: 0
     };
+    this.firstElement = React.createRef();
   }
 
   componentDidMount() {
     const { divider, dataToChunk } = this.props;
     const chunkedData = this.chunkData(divider, dataToChunk);
     this.setState({ chunkedData });
+  }
+
+  componentDidUpdate() {
+    this.firstElement.current.scrollIntoView();
   }
 
   chunkData = (divider, dataToChunk) => {
@@ -53,9 +58,13 @@ class MessagePagination extends Component {
     const { chunkedData, currentIndex } = this.state;
 
     if (chunkedData[currentIndex]) {
-      return chunkedData[currentIndex].map(item => {
+      return chunkedData[currentIndex].map((item, index) => {
         return (
-          <li key={item.id} className="m-message">
+          <li
+            key={item.id}
+            className="m-message"
+            ref={index === 0 ? this.firstElement : ''}
+          >
             <MessageListElement message={item} />
           </li>
         );
@@ -80,21 +89,24 @@ class MessagePagination extends Component {
   };
 
   render() {
+    const { currentIndex, chunkedData } = this.state;
     return (
       <React.Fragment>
         <div className="m-message-controls">
           <button
-            className="a-button a-button--subtle a-button--lg"
+            className="a-button a-button--light a-button--lg a-button--direction a-button--shadow"
             onClick={() => this.prevPage()}
+            disabled={currentIndex === 0}
           >
-            prev
+            ‹
           </button>
           &nbsp;
           <button
-            className="a-button a-button--subtle a-button--lg"
+            className="a-button a-button--light a-button--lg a-button--direction a-button--shadow"
             onClick={() => this.nextPage()}
+            disabled={currentIndex === chunkedData.length - 1}
           >
-            next
+            ›
           </button>
           &nbsp;{this.getPosition()}
         </div>
