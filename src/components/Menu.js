@@ -1,31 +1,45 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import IconSend from './svg/IconSend';
 import IconBox from './svg/IconInbox';
 
 const Menu = () => {
   return (
-    <nav className="o-menu">
+    <nav className="o-menu" role="navigation">
       <ul>
         <li className="o-menu__element o-menu__element--logo">
-          <Link to={'/'}>Home</Link>
+          <Link to={'/'}>Messages</Link>
         </li>
         <li className="o-menu__element">
-          <Link to={'/'}>
+          <NavLink to={'/'} exact activeClassName="o-menu__element--selected">
             <i>
-              <IconBox width="20" height="20" fill={'#f7905f'} />
+              <IconBox
+                className="a-icon"
+                width="20"
+                height="20"
+                fill={'#f7905f'}
+              />
             </i>
-            Tous les messages
-          </Link>
+            <span>Tous les messages</span>
+          </NavLink>
         </li>
         <li className="o-menu__element">
-          <Link to={'/create'}>
+          <NavLink
+            to={'/create'}
+            exact
+            activeClassName="o-menu__element--selected"
+          >
             <i>
-              <IconSend width="20" height="20" fill={'#f7905f'} />
+              <IconSend
+                className="a-icon"
+                width="20"
+                height="20"
+                fill={'#f7905f'}
+              />
             </i>
-            Nouveau message
-          </Link>
+            <span>Nouveau message</span>
+          </NavLink>
         </li>
       </ul>
     </nav>
