@@ -1,12 +1,12 @@
 .o-form {
-  padding: var(--space-xs);
+  padding: 0 var(--space-xs);
   fieldset {
     border: none;
     border-bottom: 2px solid $lightgrey-color;
     background-color: $white-color;
     max-width: 1024px;
     padding: var(--space-md);
-    margin: var(--space-md);
+    margin: 0 var(--space-md) var(--space-md) var(--space-md);
   }
 
   input,
@@ -32,7 +32,14 @@
 
   input[type='radio'],
   input[type='checkbox'] {
-    height: 20px;
+    line-height: 1.7;
+    margin: var(--space-xs);
+  }
+
+  input[type='checkbox'] {
+    padding: var(--space-lg);
+    width: auto;
+    display: inline-block;
   }
 
   input[type='text']:focus,
@@ -46,9 +53,15 @@
 
   label {
     display: block;
+    margin: var(--space-xs) 0;
     width: 100%;
     font-size: var(--text-md);
     color: $primary-color;
+
+    &.label--inline {
+      display: inline-block;
+      width: auto;
+    }
   }
 
   &__error {

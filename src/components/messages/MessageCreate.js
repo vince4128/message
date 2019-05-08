@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { createMessage } from '../../actions';
 
 class MessageCreate extends Component {
@@ -36,11 +37,13 @@ class MessageCreate extends Component {
     );
   };
 
-  renderCheckbox = ({ input, label, meta }) => {
+  renderCheckbox = ({ input, label, meta, id }) => {
     return (
       <div>
-        <label>{label}</label>
-        <input type="checkbox" {...input} />
+        <label className="label--inline" htmlFor={id}>
+          {label}
+        </label>
+        <input type="checkbox" {...input} id={id} />
         {this.renderError(meta)}
       </div>
     );
@@ -52,35 +55,61 @@ class MessageCreate extends Component {
 
   render() {
     return (
-      <form
-        className="o-form"
-        onSubmit={this.props.handleSubmit(this.onSubmit)}
-      >
-        <fieldset>
-          <Field
-            name="title"
-            component={this.renderInput}
-            label="Titre"
-            placeholder="Titre de votre message"
-          />
-          <Field
-            name="body"
-            component={this.renderTextArea}
-            label="Message"
-            placeholder="Votre message"
-          />
-        </fieldset>
-        <fieldset>
-          <Field
-            name="confidential"
-            component={this.renderCheckbox}
-            label="Privé"
-          />
-        </fieldset>
-        <fieldset>
-          <button>Envoyer</button>
-        </fieldset>
-      </form>
+      <React.Fragment>
+        <div className="m-message-controls">
+          <Link to={'/'}>
+            <button className="a-button a-button--light a-button--lg a-button--direction a-button--shadow">
+              ‹
+            </button>
+            Retour
+          </Link>
+        </div>
+        <form
+          className="o-form"
+          onSubmit={this.props.handleSubmit(this.onSubmit)}
+        >
+          <fieldset>
+            <h2>Nouveau message</h2>
+            <Field
+              name="title"
+              component={this.renderInput}
+              label="Titre"
+              placeholder="Titre de votre message"
+            />
+            <Field
+              name="body"
+              component={this.renderTextArea}
+              label="Message"
+              placeholder="Votre message"
+            />
+            <Field
+              name="confidential"
+              component={this.renderCheckbox}
+              label="Ce message est privé"
+              id="privacy"
+            />
+          </fieldset>
+          <fieldset>
+            <button
+              onClick={() => {
+                this.props.reset();
+              }}
+              type="button"
+              className="a-button a-button--md a-button--primary"
+              disabled={this.props.pristine || this.props.submitting}
+            >
+              Reset
+            </button>
+            <button
+              type="submit"
+              className="a-button a-button--md a-button--secondary"
+              disabled={this.props.invalid}
+            >
+              Envoyer
+            </button>
+          </fieldset>
+        </form>
+      </React.Fragment>
     );
   }
 }
