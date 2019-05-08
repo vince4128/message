@@ -1,4 +1,6 @@
 .o-menu {
+  //general layout for the menu
+  //for medium and small screen
   display: block;
   position: fixed;
   top: 0;
@@ -7,6 +9,7 @@
   background-color: $white-color;
   box-shadow: var(--shadow-sm);
 
+  //wrapper for the menu element
   ul {
     display: flex;
     justify-content: flex-end;
@@ -16,6 +19,7 @@
     margin: 0;
   }
 
+  //menu elements
   &__element {
     &:hover {
       background-color: $lightestgrey-color;
@@ -34,6 +38,7 @@
     }
   }
 
+  //menu element with logo emplacement
   &__element--logo {
     position: absolute;
     left: 0;
@@ -51,11 +56,13 @@
     }
   }
 
+  //active menu class
   &__element a.o-menu__element--selected {
     background-color: $lightgrey-color;
     border-bottom: solid 5px $primary-color;
   }
 
+  //rules for large screen
   @include mq('md') {
     display: block;
     position: relative;
@@ -99,6 +106,7 @@
     }
   }
 
+  //rule for very small screen
   @include mq('sm', 'max') {
     &__element {
       span {

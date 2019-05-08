@@ -1,3 +1,4 @@
+// mixin for the media queries
 @mixin mq($width, $type: min) {
   @if map-has-key($breakpoints, $width) {
     $width: map_get($breakpoints, $width);

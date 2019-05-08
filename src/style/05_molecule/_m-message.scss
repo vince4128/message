@@ -1,3 +1,4 @@
+// message overview in list of message
 .m-message {
   display: block;
   position: relative;
@@ -13,6 +14,7 @@
     margin: 0;
   }
 
+  // title of the message with an ellipsis for text overflow
   &__title {
     width: 95%;
     white-space: nowrap;
@@ -21,6 +23,7 @@
     color: $grey-color;
   }
 
+  // body of the message fixed at two lines
   &__body {
     width: 95%;
     display: block;
@@ -28,11 +31,10 @@
     height: calc(var(--text-base-size) * 2.2);
     font-size: var(--text-base-size);
     color: $grey-color;
-    //white-space: nowrap;
     overflow: hidden;
-    //text-overflow: ellipsis;
   }
 
+  // the content is truncate with a gradient
   &__body:after {
     content: '';
     text-align: right;
@@ -48,6 +50,7 @@
     );
   }
 
+  // privacy indicator
   &__privacy {
     position: absolute;
     width: var(--space-xs);
@@ -76,12 +79,5 @@
 
   &__privacy-text--public {
     color: $secondary-color;
-  }
-
-  hr {
-    border: 0;
-    height: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   }
 }

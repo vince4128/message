@@ -6,6 +6,7 @@
   --btn-xl: calc(var(--btn-font-size) * 2);
 }
 
+// general rules for the buttons
 .a-button {
   display: inline-flex;
   position: relative;
@@ -22,6 +23,7 @@
   transition: all 0.3s ease;
 }
 
+// rule for the disabled button
 .a-button:disabled {
   background-color: $lightgrey-color;
   color: $white-color;
@@ -31,10 +33,12 @@
   }
 }
 
+// space between buttons
 .a-button + .a-button {
   margin-left: var(--space-xs);
 }
 
+// button colors
 .a-button--primary {
   background-color: $primary-color;
   color: $white-color;
@@ -67,6 +71,7 @@
   }
 }
 
+//rounded button for navigation arrow button
 .a-button--direction {
   border-radius: 50%;
   width: var(--space-lg);
@@ -78,7 +83,7 @@
   margin-left: 0;
 }
 
-// size
+// sizes of button
 .a-button--sm {
   font-size: var(--btn-sm);
 }

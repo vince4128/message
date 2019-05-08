@@ -1,23 +1,43 @@
-// 00. BASE
+// This file is the root file for styles
+// The style are divided in 7 parts :
+
+// 00. BASE, the base for normalize the styles and some general rules
 @import './00_base/base';
 
-// 01. VARIABLES
+// 01. VARIABLES, helping with consistency, set the values for :
+// - breakpoints values
+// - colors theme
+// - shadow
+// - spacing
 @import './01_variables/variables';
 
-// 02. MIXINS
+// 02. MIXINS helpers for :
+// - breakpoints (media-queries rules)
+// - fontface (fonts imports)
 @import './02_mixins/mixins';
 
-// 03. TYPOGRAPHY
+// 03. TYPOGRAPHY, fonts imports, and font theme :
+// - type scale
+// - type family
 @import './03_typography/typography';
 
-// 04. ATOM
+// 04. ATOM, for small and reusable part of the ui containing a unique or few parts :
+// - buttons (primary,secondary,light) in different sizes
 @import './04_atom/atom';
 
-// 05. MOLECULE
+// 05. MOLECULE, the medium part of ui containing severals part of ui or a context :
+// - message-controls (the controls on top of the message list)
+// - message-list (the wrapper of the message list)
+// - message-show (display a message)
+// - message (the element representing a message in the list of messages)
 @import './05_molecule/molecule';
 
-// 06. LAYOUT
+// 06. LAYOUT, structuring elements of the ui like wrapper
+// - l-container ui wrapper
 @import './06_layout/layout';
 
-// 07. ORGANISM
+// 07. ORGANISM, more general parts of the ui
+// - form, style rules for the form
+// - main, the content part of the ui
+// - menu, navigation part of the ui
 @import './07_organism/organism';
