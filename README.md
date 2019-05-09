@@ -45,12 +45,49 @@ yarn start
     - Le dossier **svg** contient les components retournant des icônes au format svg
   - Le dossier **reducers** contient les reducers qui retourne de nouveaux _state_ pour gérer l'état de l'application à chaque fois que des _actions creator_ sont appelés
   - Le dossier **style** contient les fichiers .scss pour le style de l'application
+---
+## API utilisée
+https://jsonplaceholder.typicode.com/
+---
+## Liste des composants :
+
+* 1.App.js
+* 2.Menu.js
+* 3.MessageList.js
+* 4.MessageListElement.js
+* 5.MessagePagination.js
+* 6.MessageShow.js
+* 7.IconInbox
+* 8.IconSend
+---
+## Vue d'ensemble de l'application
+
+3 vues :
+* Vue principale
+* Vue "show"
+* Vue "create"
+
+### vue create
+
+![message-client_files_structure-vue-principale](https://user-images.githubusercontent.com/5464386/57422227-86041080-720f-11e9-8297-9873b37b65a7.jpg)
+
+![message-client_files_structure-vue-principale-composants](https://user-images.githubusercontent.com/5464386/57422321-e5622080-720f-11e9-945c-862569e96679.jpg)
+
+### vue show
+
+![message-client_files_structure-vue-show](https://user-images.githubusercontent.com/5464386/57422362-0c205700-7210-11e9-9940-4ed6b44522c7.jpg)
+
+![message-client_files_structure-vue-show-composants](https://user-images.githubusercontent.com/5464386/57422385-2823f880-7210-11e9-9f3f-affcad8482c7.jpg)
+
+### vue create
+
+![message-client_files_structure-vue create](https://user-images.githubusercontent.com/5464386/57422425-4ab61180-7210-11e9-9f47-1740adaaf48f.jpg)
+
+![message-client_files_structure-vue-create-composant](https://user-images.githubusercontent.com/5464386/57422452-69b4a380-7210-11e9-9fcf-40c15bb0a37e.jpg)
 
 ---
 
----
-
-## Components
+## Composants
 
 **src\components\App.js**
 
