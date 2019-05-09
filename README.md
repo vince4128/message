@@ -1,68 +1,197 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+##
 
-## Available Scripts
+# Message client
 
-In the project directory, you can run:
+Cette application react.js a pour objectif d'afficher une liste de messages venant d'une API REST et de proposer en formulaire pour la création d'un message.
 
-### `npm start`
+Ce projet a été généré à l'aide de **create-react-app**, lien vers la documentation :
+https://github.com/facebook/create-react-app/blob/master/README.md
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Pour utiliser ce projet clonez le et ensuite, installez les dépendances en utilisant la commande :
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+```
+yarn install
+```
 
-### `npm test`
+Une fois les dépendances installées, démarrez le serveur de développement en utilisant la commande :
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+yarn start
+```
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Structure des dossiers
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+```
+├───public
+└───src
+    ├───actions
+    ├───api
+    ├───components
+    │   ├───messages
+    │   └───svg
+    ├───reducers
+    └───style
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
 
-### `npm run eject`
+- Le dossier **public** contient les fichiers statiques
+- Le dossier **src** contient les fichiers sources de l'application
+  - Le dossier **actions** contient les _actions creator_ utilisé avec redux ainsi que les types d'actions
+  - Le dossier **api** contient la configuration de l'API (base url)
+  - Le dossier **components** contient les composants de l'application
+    - Le dossier **messages** tous les composants liés à l'affichage des messages
+    - Le dossier **svg** contient les components retournant des icônes au format svg
+  - Le dossier **reducers** contient les reducers qui retourne de nouveaux _state_ pour gérer l'état de l'application à chaque fois que des _actions creator_ sont appelés
+  - Le dossier **style** contient les fichiers .scss pour le style de l'application
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Components
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**src\components\App.js**
 
-## Learn More
+### 1. App
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Ce composant est la base de l'application, où le _router_ est déclaré et les routes associés a des composants
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Le path "/" rend le composant **MessageList** qui liste les messages
+- Le path "/show/:id" rend le composant **MessageShow**, qui affiche un message unique (dépendant de l'id passé en paramètre)
+- Le path "/create" rend le composant **MessageCreate** qui affiche le formulaire de création de message
 
-### Code Splitting
+Le retour prend en paramètre l'onjet **history** car celui-ci a été extrait pour permettre de l'utiliser en dehors du contexte react (exemple : redirection dans les actions creator).
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+---
 
-### Analyzing the Bundle Size
+**src\components\Menu.js**
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### 2. Menu
 
-### Making a Progressive Web App
+Menu
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+Ce composant est responsable de la navigation entre les vues en fonction des actions de l'utilisateur
 
-### Advanced Configuration
+Dans cette application il y a 3 vues :
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+- La vue principale "/" Affiche les messages sous forme de liste
+- La vue "show" "/show/:id" Affiche un message en particulier
+- La vue de création de message "/create"
 
-### Deployment
+Ce composant utilise _NavLink_ un composant de _react-router-dom_ pour modifier la classe du menu actif
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+---
 
-### `npm run build` fails to minify
+**src\components\messages\MessageList.js**
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### 3. MessageList
+
+This component return the list of all the messages
+The messages are objects in an array fetched from redux the redux store using _fetchMessages_ action
+
+This component return the _MessagePagination_ component passing all the messages as a props to build a list of messages.
+
+---
+
+**src\components\messages\MessageListElement.js**
+
+### 4. MessageListElement
+
+Ce composant rend un élément de liste représentant un message
+
+Il prend un objet _message_ comme **props** et rend un appercu de celui-ci.
+Le contenu est tronqué (géré en css) si il ne rentre pas dans le composant (il s'agit d'un appercu).
+
+| Property | Type   | Required | Default value | Description |
+| :------- | :----- | :------- | :------------ | :---------- |
+| message  | object | yes      |               |
+
+---
+
+**src\components\messages\MessagePagination.js**
+
+### 5. MessagePagination
+
+Ce composant mets en forme les messages sous forme de liste et divise ceux-ci en page pour améliorer la lisibilité
+
+Le composant prends 2 props en paramètres, _messages_ et _divider_.
+
+_messages_ est un _array_ d'_object_ un tableau contenant les messages où chacun est représenté sous forme d'objet.
+
+_divider_ specifie le nombre de messages montrés par page.
+
+Le composant a 2 propriétés :
+
+- _chunkedData_ : résultat du découpage du contenu recu en props (un _array_ contenant un _array_ par page)
+- _currentIndex_ représente la page active a afficher
+
+Pour présenter les données sous forme de pages plusieurs _helper functions_ sont utilisées :
+
+_chunkData()_ retourne les données divisés en plusieurs _array_
+
+_nextPage()_ et _prevPage()_ sont utilisés pour naviguer entre les pages
+
+_renderChunkedData()_ retourne la liste des messages de la page active, et retourne un composant pour chacun d'entre eux
+
+_getPosition()_ retourne la pagination
+
+Le composant fait scroller la liste représentant la page en cours quand le composant est _updaté_ (changement de page par exemple)
+
+| Property    | Type    | Required | Default value | Description |
+| :---------- | :------ | :------- | :------------ | :---------- |
+| divider     | number  | yes      | 25            |
+| dataToChunk | arrayOf | yes      |               |
+
+---
+
+**src\components\messages\MessageShow.js**
+
+### 6. MessageShow
+
+Ce composant est connecté au _redux store_ et affiche un seul message extrait de celui-ci.
+
+Le message est un objet obtenu depuis le _redux store_ en utilisant l'action creator _fetchMessage_
+
+---
+
+**src\components\svg\IconInbox.js**
+
+### 7. IconInbox
+
+Retourne une icône au format svg (Inbox) prend en props :
+
+- width
+- height
+- fill
+- color
+
+| Property | Type   | Required | Default value               | Description |
+| :------- | :----- | :------- | :-------------------------- | :---------- |
+| width    | string | no       | &lt;See the source code&gt; |
+| height   | string | no       | &lt;See the source code&gt; |
+| fill     | string | no       | &lt;See the source code&gt; |
+
+---
+
+**src\components\svg\IconSend.js**
+
+### 8. IconSend
+
+Retourne une icône au format svg (Paper plane) prend en props :
+
+- width
+- height
+- fill
+- color
+
+| Property | Type   | Required | Default value               | Description |
+| :------- | :----- | :------- | :-------------------------- | :---------- |
+| width    | string | no       | &lt;See the source code&gt; |
+| height   | string | no       | &lt;See the source code&gt; |
+| fill     | string | no       | &lt;See the source code&gt; |
+
+---
+
+<sub>This document was partially generated by the <a href="https://github.com/marborkowski/react-doc-generator" target="_blank">**React DOC Generator v1.2.5**</a>.</sub>
