@@ -66,7 +66,7 @@ https://jsonplaceholder.typicode.com/
 * 4.MessageListElement.js
 * 5.MessagePagination.js
 * 6.MessageShow.js
-* 7.MessageCrate.js
+* 7.MessageCreate.js
 * 8.IconInbox
 * 9.IconSend
 ---
@@ -144,8 +144,8 @@ Ce composant retourne le composant _MessagePagination_ qui présente les message
 
 Ce composant rend un élément de liste représentant un message
 
-Il prend un objet _message_ comme **props** et rend un appercu de celui-ci.
-Le contenu est tronqué (géré en css) si il ne rentre pas dans le composant (il s'agit d'un appercu).
+Il prend un objet _message_ comme **props** et rend un aperçu de celui-ci.
+Le contenu est tronqué (géré en css) si il ne rentre pas dans le composant (il s'agit d'un aperçu).
 
 | Property | Type   | Required | Default value | Description |
 | :------- | :----- | :------- | :------------ | :---------- |
