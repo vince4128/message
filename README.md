@@ -7,7 +7,7 @@ Cette application react.js a pour objectif d'afficher une liste de messages vena
 Ce projet a été généré à l'aide de **create-react-app**, lien vers la documentation :
 https://github.com/facebook/create-react-app/blob/master/README.md
 
-Pour utiliser ce projet clonez le et ensuite, installez les dépendances en utilisant la commande :
+Pour utiliser ce projet clonez-le et installez ensuite les dépendances en utilisant la commande :
 
 ```
 yarn install
@@ -18,7 +18,16 @@ Une fois les dépendances installées, démarrez le serveur de développement en
 ```
 yarn start
 ```
+Vous pouvez également utiliser les commandes :
 
+```
+npm install
+```
+et
+
+```
+npm start
+```
 ---
 
 ## Structure des dossiers
@@ -57,8 +66,9 @@ https://jsonplaceholder.typicode.com/
 * 4.MessageListElement.js
 * 5.MessagePagination.js
 * 6.MessageShow.js
-* 7.IconInbox
-* 8.IconSend
+* 7.MessageCrate.js
+* 8.IconInbox
+* 9.IconSend
 ---
 ## Vue d'ensemble de l'application
 
@@ -67,7 +77,7 @@ https://jsonplaceholder.typicode.com/
 * Vue "show"
 * Vue "create"
 
-### vue create
+### vue principale
 
 ![message-client_files_structure-vue-principale](https://user-images.githubusercontent.com/5464386/57422227-86041080-720f-11e9-8297-9873b37b65a7.jpg)
 
@@ -93,13 +103,13 @@ https://jsonplaceholder.typicode.com/
 
 ### 1. App
 
-Ce composant est la base de l'application, où le _router_ est déclaré et les routes associés a des composants
+Ce composant est la base de l'application, où le _router_ est déclaré et les _routes_ associés a des composants
 
-- Le path "/" rend le composant **MessageList** qui liste les messages
-- Le path "/show/:id" rend le composant **MessageShow**, qui affiche un message unique (dépendant de l'id passé en paramètre)
-- Le path "/create" rend le composant **MessageCreate** qui affiche le formulaire de création de message
+- Le _path_ "/" rend le composant **MessageList** qui liste les messages
+- Le _path_ "/show/:id" rend le composant **MessageShow**, qui affiche un message unique (dépendant de l'id passé en paramètre)
+- Le _path_ "/create" rend le composant **MessageCreate** qui affiche le formulaire de création de message
 
-Le retour prend en paramètre l'onjet **history** car celui-ci a été extrait pour permettre de l'utiliser en dehors du contexte react (exemple : redirection dans les actions creator).
+Le routeur prend en paramètre l'objet **history** car celui-ci a été extrait pour permettre de l'utiliser en dehors du contexte react (exemple : redirection dans les actions creator).
 
 ---
 
@@ -109,9 +119,7 @@ Le retour prend en paramètre l'onjet **history** car celui-ci a été extrait p
 
 Menu
 
-Ce composant est responsable de la navigation entre les vues en fonction des actions de l'utilisateur
-
-Dans cette application il y a 3 vues :
+Ce composant est responsable de la navigation entre les 3 vues de l'application.
 
 - La vue principale "/" Affiche les messages sous forme de liste
 - La vue "show" "/show/:id" Affiche un message en particulier
@@ -125,10 +133,8 @@ Ce composant utilise _NavLink_ un composant de _react-router-dom_ pour modifier 
 
 ### 3. MessageList
 
-This component return the list of all the messages
-The messages are objects in an array fetched from redux the redux store using _fetchMessages_ action
-
-This component return the _MessagePagination_ component passing all the messages as a props to build a list of messages.
+Ce composant retourne une liste de tous les messages, ce composant est connecté au _redux store_ et les messages sont récupérés grâce a l'action creator _fetchMessages()_.
+Ce composant retourne le composant _MessagePagination_ qui présente les messages sous forme de liste.
 
 ---
 
@@ -161,10 +167,10 @@ _divider_ specifie le nombre de messages montrés par page.
 
 Le composant a 2 propriétés :
 
-- _chunkedData_ : résultat du découpage du contenu recu en props (un _array_ contenant un _array_ par page)
-- _currentIndex_ représente la page active a afficher
+- _chunkedData_ : résultat du découpage du contenu reçu en props (un _array_ contenant un _array_ par pages)
+- _currentIndex_ : représente la page active a afficher
 
-Pour présenter les données sous forme de pages plusieurs _helper functions_ sont utilisées :
+Pour présenter les données sous forme de pages, plusieurs _helper functions_ sont utilisées :
 
 _chunkData()_ retourne les données divisés en plusieurs _array_
 
@@ -174,7 +180,7 @@ _renderChunkedData()_ retourne la liste des messages de la page active, et retou
 
 _getPosition()_ retourne la pagination
 
-Le composant fait scroller la liste représentant la page en cours quand le composant est _updaté_ (changement de page par exemple)
+Le composant fait scroller la liste représentant la page en cours quand le composant est _updaté_ (lors d'un changement de page par exemple)
 
 | Property    | Type    | Required | Default value | Description |
 | :---------- | :------ | :------- | :------------ | :---------- |
@@ -195,7 +201,24 @@ Le message est un objet obtenu depuis le _redux store_ en utilisant l'action cre
 
 **src\components\svg\IconInbox.js**
 
-### 7. IconInbox
+### 7. messageCreate
+
+Ce composant rend un formulaire de création de message.
+Il utilise _redux-form_ pour se _connecter_ au _redux store_.
+
+Il y a 3 champs :
+ * *Title*, le titre du message
+ * *Body*, le contenu du message
+ * *Confidential*, un Booléen qui indique si le message est privé.
+
+Pour chaque type champ il y a une métohde de rendu :
+* renderInput 
+* renderTextArea 
+* renderCheckbox 
+
+Les méthodes *renderError()* et *validate()* aide a connaître la validité du formulaire et a informer l'utilisateur si celui-ci est incomplet
+
+### 8. IconInbox
 
 Retourne une icône au format svg (Inbox) prend en props :
 
@@ -214,7 +237,7 @@ Retourne une icône au format svg (Inbox) prend en props :
 
 **src\components\svg\IconSend.js**
 
-### 8. IconSend
+### 9. IconSend
 
 Retourne une icône au format svg (Paper plane) prend en props :
 
@@ -260,16 +283,15 @@ Les styles sont divisés en 7 parties
 00. BASE, import de normalize.css + règles de base
 01. VARIABLES, variables pour :
 * valeurs concernant les breakpoints
-* valeurs de couleurs
-* valurs d'ombres
+* thème de couleurs
+* valeurs concernant les ombres
 * valeur d'espacement
 
-
 02. MIXINS helpers pour :
-* breakpoints (media-queries)
+* breakpoints (les media-queries)
 * fontface (imports de police)
 
-03. TYPOGRAPHY, import et thème typographique
+03. TYPOGRAPHY, import de police et thème typographique
 * échelle de texte
 * police utilisé
 
