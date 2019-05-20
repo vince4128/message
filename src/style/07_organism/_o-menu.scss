@@ -5,7 +5,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  height: var(--space-xl);
+  //height: var(--space-xl);
   background-color: $white-color;
   box-shadow: var(--shadow-sm);
 
@@ -13,7 +13,7 @@
   ul {
     display: flex;
     justify-content: flex-end;
-    height: var(--space-xl);
+    //height: var(--space-xl);
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -27,22 +27,24 @@
     a {
       transition: all 0.3s ease;
       height: 100%;
-      display: block;
+      display: flex;
+      align-items: center;
       padding: var(--space-xs) var(--space-md);
       color: $primary-color;
       font-size: var(--text-base-size);
       border-bottom: 5px solid lighten($primary-color, 20%);
       i {
-        padding: 0.75em var(--space-xs);
+        padding: 0 var(--space-xs);        
       }
     }
   }
 
   //menu element with logo emplacement
   &__element--logo {
-    position: absolute;
-    left: 0;
-    height: 100%;
+    //position: absolute;
+    //left: 0;
+    //height: 100%;
+    margin-right:auto;
     font-size: var(--font-base-size);
     text-align: center;
     background-color: $primary-color;
@@ -50,7 +52,7 @@
       background-color: lighten($primary-color, 5%);
     }
     a {
-      padding-top: var(--space-md);
+      //padding-top: var(--space-md);
       border: none;
       color: $white-color;
     }
